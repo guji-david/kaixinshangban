@@ -11,7 +11,16 @@
         <div class="home-search">
           <div class="home-center">
             <div class="home-input">
-              <div class="home-search-input-bg">
+
+              <div class="home-search-bg">
+                <div class="home-search-select-bg">
+                  <select>
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                  </select>
+                </div>
                 <img src="../../assets/images/search.png" alt="开心上班">
                 <input type="text" placeholder="公司/ 投资方向/ 产品名称" id="home-query"
 
