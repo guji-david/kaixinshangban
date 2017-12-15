@@ -1,7 +1,10 @@
 <template>
-  <div id="user-menu-box">
-      <div class="weixin">
-        <span class="icon-weixin"></span>
+  <div class="user-info">
+      <div class="noLogin">
+        <span class="icon-sprites icon-weixin icon-box"></span>
+        <span class="icon-sprites icon-qq icon-box"></span>
+        <span class="icon-box">登陆</span>
+        <span class="icon-box">注册</span>
       </div>
   </div>
 </template>

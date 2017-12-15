@@ -1,8 +1,16 @@
 <template>
   <div class="z-header-box">
-    <Logo></Logo>
-    <TagMenu></TagMenu>
-    <UserInfo></UserInfo>
+    <div class="container">
+      <el-row style="height: 100%">
+        <el-col :span="8"> <Logo></Logo></el-col>
+        <el-col :span="8">  <TagMenu></TagMenu></el-col>
+        <el-col :span="8"> <UserInfo></UserInfo></el-col>
+      </el-row>
+
+
+
+    </div>
+
 
   </div>
 </template>
@@ -42,10 +50,12 @@ export default {
     flex-flow:row nowrap;
     justify-content: space-evenly;
     align-items:center;
-    margin:0 auto;
     width:100%;
     height: 60px;
     /*background:#eee;*/
+    .container{
+      height: 100%;
+    }
   }
 
 </style>

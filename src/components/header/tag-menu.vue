@@ -49,12 +49,19 @@
 
 <style  lang="less" scoped>
   #z-nav-tag-box{
+    width:100%;
+    height: 100%;
   }
   .z-nav-tag-ul{
+    width:100%;
   }
   .z-nav-tag-ul li{
-    height: 40px;
-    line-height: 40px;
+    width: 25%;
+    height: 60px;
+    line-height: 60px;
+    display: inline-block;
+    font-size: 1.1em;
+    cursor: pointer;
   }
 
   .z-nav-tag-ul li:hover,.z-nav-tag-ul .sel {

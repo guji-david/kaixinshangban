@@ -13,16 +13,22 @@
   width: 100%;
   z-index: 2;
   .home-center{
-    width: 720px;
+    width: 500px;
     margin: 0 auto;
     padding-bottom: 110px;
     .home-input {
       float: left;
       position: relative;
       border-radius: 5px;
-      width: 730px;
+      width: 510px;
       height: 45px;
-      //margin: 0 auto;
+      input{
+        background-color: #fff;
+        height: 45px;
+        font-size: 14px;
+        padding-top: 0;
+        float: left;
+      }
       img {
         background: #fff;
         height: 40px;
@@ -30,15 +36,6 @@
         padding: 9px;
         margin-left: 4px;
         margin-top: 4px;
-      }
-      input {
-        background-color: #fff;
-        height: 45px;
-        width: 300px;
-        border: none;
-        font-size: 14px;
-        padding-top: 0px;
-        float: left;
       }
       button {
         background: @color-orange;
@@ -54,19 +51,22 @@
       button:hover{
         background-color: @color-orange-hover;
       }
-      .select-group {
+      .input-group {
         z-index: 999;
         position: absolute;
-        width: 500px;
+        width: 340px;
         margin-top:45px;
+        margin-left:110px;
         height: auto;
         background: #fff;
         overflow-x: hidden;
+        box-shadow: 0 0 8px #aaa;
+        -webkit-box-shadow: 0 0 8px #aaa;
         .selectModel {
           color: #bebebe;
           font-size: 1.2em;
-          width: 500px;
-          margin-bottom: 0px;
+          width: 340px;
+          margin-bottom: 0;
           border: solid 1px @color-grey;
           .item-hot {
             padding-left: 20px;
@@ -100,15 +100,67 @@
 
       .home-search-bg{
         background:#fff;
-        width: 720px;
+        width: 550px;
         height: 45px;
         border-radius: 5px;
         .home-search-select-bg{
-          //background:#ff0;
+          position: relative;
           float: left;
-          width: 120px;
+          width: 100px;
           height: 45px;
           border-radius: 5px;
+          .home-search-select{
+            width: 70px;
+            border-radius: 5px;
+            padding-left: 20px;
+          }
+          .el-input-icon{
+            transition:all 1s;
+            float: left;
+            line-height: 45px;
+            color: #bfcbd9;
+            cursor: pointer;
+          }
+          .el-input-icon-animation{
+            transform: rotateX(180deg);
+          }
+
+          .select-group {
+            z-index: 999;
+            position: absolute;
+            width: 90px;
+            margin-top:45px;
+            height: auto;
+            overflow-x: hidden;
+            box-shadow: 0 0 8px #aaa;
+            -webkit-box-shadow: 0 0 8px #aaa;
+            .select-model {
+              color: #bebebe;
+              font-size: 1.2em;
+              width: 90px;
+              margin-bottom: 0;
+              border: solid 1px @color-grey;
+              .item {
+                padding-left: 20px;
+                padding-right: 20px;
+                line-height: 40px;
+                height: 40px;
+                text-align: left;
+                font-size: 1.0em;
+                width: 100%;
+                display: inline-block;
+                overflow: hidden;
+                cursor: pointer;
+                white-space: nowrap;
+              }
+              .item:hover {
+                background-color: #F0F0F0;
+              }
+            }
+          }
+        }
+        .home-query-input{
+          width: 300px;
         }
       }
       .home-search-bg:hover
@@ -167,4 +219,7 @@
   }
 
 
+}
+.el-input__inner{
+  border: none;
 }
