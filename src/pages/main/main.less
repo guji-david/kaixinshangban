@@ -4,6 +4,7 @@
 @color-header-bg:#738BA3;
 @color-white:#fff;
 @color-grey:#bebebe;
+
 .main-carousel{
   position: relative;
 }
@@ -124,7 +125,6 @@
           .el-input-icon-animation{
             transform: rotateX(180deg);
           }
-
           .select-group {
             z-index: 999;
             position: absolute;
@@ -220,6 +220,196 @@
 
 
 }
-.el-input__inner{
-  border: none;
+.main-item{
+  margin-top: 10px;
+  text-align:left;
+  .item-head{
+    margin: 15px 0;
+    position: relative;
+    .item-title{
+      font-weight: bold;
+      font-size: 1.3em;
+    }
+    .item-subTitle{
+      font-size: 1.2em;
+      padding-left: 5px;
+      color:@color-grey ;
+    }
+    .item-getMore{
+      position: absolute;
+      top:2px;
+      right: 0;
+      font-size: 1.0em;
+      .el-icon-arrow-right{
+        color: @color-grey;
+        font-size: .5em;
+      }
+    }
+  }
+
 }
+.main-job{
+    .job-select{
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius:5px;
+      .select-item{
+        width: 33.33%;
+        height: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-right: 1px solid #ccc;
+        text-align: center;
+        font-size: 1.1em;
+        .select-item-input{
+          height: 40px;
+          width: 80px;
+          line-height: 40px;
+          text-align: center;
+          font-size: 1.1em;
+          cursor: pointer;
+        }
+        .el-input-icon{
+          transition:all 1s;
+          color: #bfcbd9;
+        }
+        .el-input-icon-animation{
+          transform: rotateX(180deg);
+        }
+        .select-group {
+          z-index: 999;
+          position: absolute;
+          top:61px;
+          width: 100%;
+          height: auto;
+          overflow-x: hidden;
+          background: #fff;
+          box-shadow: 0 0 8px #aaa;
+          -webkit-box-shadow: 0 0 8px #aaa;
+          .select-model {
+            color: #bebebe;
+            font-size: 1.2em;
+            margin-bottom: 0;
+            border: solid 1px @color-grey;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            .item {
+              line-height: 40px;
+              height: 40px;
+              //text-align: center;
+              font-size: 1.0em;
+              width: 100%;
+              border-bottom: solid 1px @color-grey;
+              //display: inline-block;
+              //overflow: hidden;
+              cursor: pointer;
+              white-space: nowrap;
+            }
+            .item:hover {
+              background-color: #F0F0F0;
+            }
+          }
+        }
+      }
+      .select-item-age ,.select-item-salary{
+        position: relative;
+        cursor: pointer;
+      }
+      .select-item-evaluating{
+        display: flex;;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .item-evaluating-title{
+          color: @color-orange;
+        }
+        .item-evaluating-num{
+          color: @color-grey;
+          font-size: .9em;
+        }
+      }
+      .select-item:last-child{
+        border-right:none;
+      }
+    }
+    .job-list{
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap:wrap;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 100px;
+      .job-list-item{
+          width: 33.33%;
+        .list-item-main{
+          margin:5px 15px 0 0;
+          border: .0001px solid red;
+          box-shadow: 0 0 1px #aaa;
+          .item-up{
+            margin: 0 5px;
+            border-bottom: .0001px solid @color-grey;
+            .up-first{
+              width: 100%;
+              .first-item{
+                width:33.33%;
+                float: left;
+                font-weight: bold;
+                font-size: 1.1em;
+                padding:5px 2px;
+              }
+              .item-salary {
+                font-weight:normal;
+                color: @color-orange;
+              }
+            }
+            .up-second{
+              display: flex;
+              justify-content: flex-start;
+              text-align: center;
+              margin-left: 5px;
+              .second-item{
+                padding:6px;
+                color:#aaa ;
+              }
+            }
+            .up-third{
+              display: flex;
+              justify-content: flex-start;
+              text-align: center;
+              .third-item{
+                margin: 5px  10px;
+                text-align: center;
+
+              }
+            }
+          }
+          .item-down{
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap:wrap;
+            align-items: center;
+            text-align: center;
+            .item-down-img{
+              width: 50px;
+              height: 50px;
+              margin: 10px ;
+            }
+          }
+        }
+
+
+      }
+
+      .job-list-item:nth-child(3n) >.list-item-main {
+        margin:10px 0 0 0;
+      }
+    }
+}
+

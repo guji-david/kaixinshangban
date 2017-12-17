@@ -25,15 +25,15 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    .z-logo{
-      height: 100%;
-      display: flex;
-      align-items: center;
-    }
-    .z-title{
-      padding-left: 10px;
-      font-size: 1.2em;
-    }
+  }
+  .z-logo{
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .z-title{
+    padding-left: 10px;
+    font-size: 1.5em;
   }
 
 </style>

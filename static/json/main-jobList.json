@@ -1,0 +1,14 @@
+[
+  {"id":1,
+    "recruitCompany":"华拓招客服专员",
+    "recruitIsNormal":"编制待遇",
+    "salary":"3k-7k",
+    "age":"20-45岁",
+    "eduction":"不限学历",
+    "date":"2017年12月17日",
+    "list":["餐补","包住","双休"],
+    "companyLogo":"../../assets/images/logo.jpg",
+    "companyName":"华拓光通信股份有限公司",
+    "companyAdr":"常州"
+  }
+]
