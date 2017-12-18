@@ -92,19 +92,29 @@
         <div class="item-head">
           <span class="item-title">最新职位</span>
           <span class="item-subTitle">为你而选</span>
-          <div class="item-getMore" @click="getMoreJob()">
-            <span>更多职位</span>
-            <i class="el-input-icon el-icon-arrow-right"></i>
+          <div class="item-getMore" v-if="jobList.length>6">
+            <div v-if="jobListMaxLength==6" @click="getMoreJob(0)">
+              <span>更多职位</span>
+              <i class="el-input-icon el-icon-arrow-right"></i>
+            </div>
+            <div v-else @click="getMoreJob(1)">
+              <span>收起</span>
+              <i class="el-input-icon el-icon-arrow-left"></i>
+              <i class="el-input-icon el-icon-arrow-left"></i>
+            </div>
+
           </div>
         </div>
         <div class="job-list">
-          <div class="job-list-item" v-for="item in jobList">
+          <div class="job-list-item" v-for="(item,index) in jobList" v-if="index<jobListMaxLength">
                 <div class="list-item-main">
                     <div class="item-up">
                       <div class="up-first">
-                        <div class="first-item"v-text="item.recruitCompany"></div>
-                        <div class="first-item"> {{item.recruitIsNormal}}&nbsp;</div>
-                        <div class="first-item item-salary"v-text="item.salary"></div>
+                        <div class="first-item">
+                          <span v-text="item.recruitCompany"></span>
+                          <span > {{item.recruitIsNormal}}&nbsp;</span>
+                       </div>
+                        <div class="item-salary"v-text="item.salary"></div>
                         <div style="clear: both"></div>
 
 
@@ -113,7 +123,7 @@
                       <div class="up-second" >
                        <span class="second-item" v-text="item.age"></span>
                         <span class="second-item"v-text="item.eduction"></span>
-                        <span class="second-item">{{item.date}}发布</span>
+                        <span class="second-item">{{item.date}} 发布</span>
                       </div>
                       <div class="up-third">
                         <span class="third-item"  v-for="el in item.list"v-text="el"></span>
@@ -127,11 +137,68 @@
 
                     <div class="item-down-dec">
                       <div v-text="item.companyName"></div>
-                      <div >制造商/{{item.companyAdr}}</div>
+                      <div class="down-dec-com">制造商 / {{item.companyAdr}}</div>
                     </div>
                   </div>
               </div>
            </div>
+        </div>
+      </div>
+      <div class="container main-item main-company">
+        <div class="item-head">
+          <span class="item-title">知名企业</span>
+          <span class="item-subTitle">为你推荐</span>
+          <div class="item-getMore"  v-if="companyList.length>4">
+            <div v-if="companyListMaxLength==4" @click="getMoreCompany(0)">
+              <span>更多名企</span>
+              <i class="el-input-icon el-icon-arrow-right"></i>
+            </div>
+            <div v-else @click="getMoreCompany(1)">
+              <span>收起</span>
+              <i class="el-input-icon el-icon-arrow-left"></i>
+              <i class="el-input-icon el-icon-arrow-left"></i>
+            </div>
+
+          </div>
+        </div>
+        <div class="company-list">
+          <div class="company-list-item" v-for="(item,index) in companyList" v-if="index<companyListMaxLength">
+            <div class="list-item-main">
+              <img :src="item.companyLogo" alt="">
+              <div class="item-companyDec" v-text="item.companyDec"></div>
+              <div class="item-comment">
+                <span class="item-comment-fiveStar" v-text=" '★★★★★☆☆☆☆☆'.slice(5-item.commentFiveStarNum,10-item.commentFiveStarNum)">
+
+                </span>
+                <span >&nbsp;来自{{item.commentNum}}条评论</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container main-item main-successDemo">
+        <div class="item-head">
+          <span class="item-title">成功就业</span>
+          <span class="item-subTitle">新起点</span>
+          <div class="item-getMore" >
+            <div >
+              <span>更多老乡就业</span>
+              <i class="el-input-icon el-icon-arrow-right"></i>
+            </div>
+         <!--   <div>
+              <span>收起</span>
+              <i class="el-input-icon el-icon-arrow-left"></i>
+              <i class="el-input-icon el-icon-arrow-left"></i>
+            </div>-->
+
+          </div>
+        </div>
+        <div class="successDemo-list">
+          <el-carousel indicator-position="none" height=200px :interval="2000" type="card">
+            <el-carousel-item v-for="item in successDemoList" :key="item.id">
+              <img :src="item.picUrl" alt="">
+            </el-carousel-item>
+          </el-carousel>
         </div>
       </div>
     </div>
@@ -171,6 +238,7 @@
                 },
                 jobSelectAgeVisable:false,
                 ageOptions:[
+                    {value: '', label: '全选'},
                     {value: '20-25', label: '20--25岁'},
                     {value: '25-30', label: '25--30岁'},
                     {value: '30-35', label: '30--35岁'},
@@ -180,14 +248,27 @@
                 ],
                 jobSelectSalaryVisable:false,
                 salaryOptions:[
-                    {value: '2000以下', label: '2k以下'},
-                    {value: '2000-3000', label: '2k--3k'},
-                    {value: '3000-4000', label: '3k--4k'},
-                    {value: '4000-5000', label: '4k--5k'},
-                    {value: '5000-6000', label: '5k--6k'},
+                    {value: '', label: '全选'},
+                    {value: '2k以下', label: '2k以下'},
+                    {value: '2k-3k', label: '2k--3k'},
+                    {value: '3k-4k', label: '3k--4k'},
+                    {value: '4k-5k', label: '4k--5k'},
+                    {value: '5k-6k', label: '5k--6k'},
                 ],
-                evaluatingNum:234324,//评测人数,
-                jobList:[]
+              evaluatingNum:234324,//评测人数,
+              jobList:[],//职位列表
+              jobListMaxLength:6,
+              companyList:[],//名企列表
+              companyListMaxLength:4,
+              successDemoList:[
+                {id:1,picUrl:"http://odqn23waz.bkt.clouddn.com/%E6%A4%8D%E7%91%9E%E6%8A%95%E8%B5%84.jpg"},
+                {id:2,picUrl:"http://odqn23waz.bkt.clouddn.com/%E8%B4%A2%E9%80%9A.jpg"},
+                {id:3,picUrl:"http://odqn23waz.bkt.clouddn.com/%E5%92%8C%E5%90%88%E8%B5%84%E7%AE%A1.jpg"},
+                {id:4,picUrl:"http://odqn23waz.bkt.clouddn.com/%E8%B4%A2%E9%80%9A.jpg"},
+                {id:5,picUrl:"http://odqn23waz.bkt.clouddn.com/%E4%B8%AD%E7%94%B5%E6%8A%95%E5%85%88%E8%9E%8D.jpg"},
+                {id:6,picUrl:"http://odqn23waz.bkt.clouddn.com/%E5%9B%BD%E6%B3%B0%E5%85%83%E9%91%AB"},
+                {id:7,picUrl:"http://odqn23waz.bkt.clouddn.com/%E5%92%8C%E5%90%88%E8%B5%84%E7%AE%A1.jpg"},
+              ]
             }
         },
         components: {
@@ -200,6 +281,7 @@
         mounted () {
             this.getCarousel();
             this.getJobList();
+            this.getCompanyList();
         },
         methods:{
             /*-------------------------1.轮播图所在区域调用方法begin--------------------------------------------------*/
@@ -289,37 +371,68 @@
             },
             /*-------------------------1.轮播图所在区域调用方法--end------------------------------------------------*/
             jobSelectAgeShow(){
-                this.jobSelectAgeVisable=!this.jobSelectAgeVisable
+                this.jobSelectAgeVisable=!this.jobSelectAgeVisable;
             },
             /*
             *年龄区域点击
             */
             ageFocus: function (el) {
                 this.jobSelectObj.ageSelect=el.label;
+                this.getJobList(el.value,'');
             },
             jobSelectSalaryShow(){
-                this.jobSelectSalaryVisable=!this.jobSelectSalaryVisable
+                this.jobSelectSalaryVisable=!this.jobSelectSalaryVisable;
+
             },
             /**
             *薪资区域点击
             */
             salaryFocus: function (el) {
                 this.jobSelectObj.salarySelect=el.label;
+              this.getJobList('',el.value);
             },
             /**
              * 获取工作列表
              */
-            getJobList(){
+            getJobList(ageSelect,salarySelect){
+              this.jobList=[];
                 Axios.get('/static/json/main-jobList.json').then(res => {
-                    this.jobList=JSON.parse(res.request.response);
+                    let list=JSON.parse(res.request.response);
+                    if(ageSelect||salarySelect){
+                        console.log(this.jobSelectObj.salarySelect);
+                        console.log(salarySelect);
+                      for(let i=0,len=list.length;i<len;i++){
+                        if((list[i].age==ageSelect)||(list[i].salary==salarySelect)){
+                          this.jobList.push(list[i]);
+                        }
+                      }
+                    }else{
+                      this.jobList=list;
+                    }
+
+
                 })
             },
             /**
              *更多职位
              */
-            getMoreJob(){
-
-            }
+            getMoreJob(type){
+              this.jobListMaxLength=type?6:this.jobList.length;
+            },
+            /**
+             *更多名企
+             */
+            getMoreCompany(type){
+              this.companyListMaxLength=type?4:this.companyList.length;
+            },
+          /**
+           * 获取企业列表
+           */
+          getCompanyList(){
+            Axios.get('/static/json/main-companyList.json').then(res => {
+              this.companyList=JSON.parse(res.request.response);
+            })
+          },
         }
     }
 </script>
