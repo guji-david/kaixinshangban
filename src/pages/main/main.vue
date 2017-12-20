@@ -194,11 +194,17 @@
           </div>
         </div>
         <div class="successDemo-list">
-          <el-carousel indicator-position="none" height=200px :interval="2000" type="card">
+         <!-- <el-carousel indicator-position="none" height=200px :interval="2000" type="card">
             <el-carousel-item v-for="item in successDemoList" :key="item.id">
               <img :src="item.picUrl" alt="">
             </el-carousel-item>
-          </el-carousel>
+          </el-carousel>-->
+          <carousel-3d :display="7":controlsVisible="true">
+            <slide :index="index" v-for="(item,index) in successDemoList">
+              <img :src="item.picUrl" alt="">
+            </slide>
+
+          </carousel-3d>
         </div>
       </div>
     </div>
@@ -209,6 +215,8 @@
 <script>
     import HeaderBox from '../../components/header/header.vue'
     import FooterBar from '../../components/footer/footer.vue'
+
+    import { Carousel3d, Slide } from 'vue-carousel-3d';
 
     import Axios from 'axios'
 
@@ -262,18 +270,19 @@
               companyListMaxLength:4,
               successDemoList:[
                 {id:1,picUrl:"http://odqn23waz.bkt.clouddn.com/%E6%A4%8D%E7%91%9E%E6%8A%95%E8%B5%84.jpg"},
-                {id:2,picUrl:"http://odqn23waz.bkt.clouddn.com/%E8%B4%A2%E9%80%9A.jpg"},
-                {id:3,picUrl:"http://odqn23waz.bkt.clouddn.com/%E5%92%8C%E5%90%88%E8%B5%84%E7%AE%A1.jpg"},
-                {id:4,picUrl:"http://odqn23waz.bkt.clouddn.com/%E8%B4%A2%E9%80%9A.jpg"},
-                {id:5,picUrl:"http://odqn23waz.bkt.clouddn.com/%E4%B8%AD%E7%94%B5%E6%8A%95%E5%85%88%E8%9E%8D.jpg"},
-                {id:6,picUrl:"http://odqn23waz.bkt.clouddn.com/%E5%9B%BD%E6%B3%B0%E5%85%83%E9%91%AB"},
-                {id:7,picUrl:"http://odqn23waz.bkt.clouddn.com/%E5%92%8C%E5%90%88%E8%B5%84%E7%AE%A1.jpg"},
+                {id:2,picUrl:"http://odqn23waz.bkt.clouddn.com/%E5%92%8C%E5%90%88%E8%B5%84%E7%AE%A1.jpg"},
+                {id:3,picUrl:"http://odqn23waz.bkt.clouddn.com/%E8%B4%A2%E9%80%9A.jpg"},
+                {id:4,picUrl:"http://odqn23waz.bkt.clouddn.com/%E4%B8%AD%E7%94%B5%E6%8A%95%E5%85%88%E8%9E%8D.jpg"},
+                {id:5,picUrl:"http://odqn23waz.bkt.clouddn.com/%E5%9B%BD%E6%B3%B0%E5%85%83%E9%91%AB"},
+                {id:6,picUrl:"http://odqn23waz.bkt.clouddn.com/%E5%92%8C%E5%90%88%E8%B5%84%E7%AE%A1.jpg"},
               ]
             }
         },
         components: {
-            HeaderBox,
-            FooterBar
+          HeaderBox,
+          FooterBar,
+          Carousel3d,
+          Slide
         },
         computed: {
 
